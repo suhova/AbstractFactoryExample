@@ -1,4 +1,5 @@
 ﻿using System;
+using AbstractFactoryExample.abstractProp;
 
 namespace AbstractFactoryExample
 {
@@ -31,16 +32,16 @@ namespace AbstractFactoryExample
                     break;
             }
 
-            Application application = new Application(prop.languageCreator().getLanguage(),
-                prop.domainCreator().getDomain(),
-                prop.fontCreator().getFont(),
-                prop.telephoneCodeCreator().getCode().ToString(),
-                prop.decimalSeparatorCreator().getSeparator().ToString(),
-                prop.currencyCreator().getCurrency(),
-                prop.capitalTimeZoneCreator().getTimeZone().ToString(),
-                prop.firstDayOfTheWeekCreator().getFirstDayOfTheWeek(),
-                prop.mainIconCreator().getMainIcon(),
-                prop.iconCountryCreator().getIconCountry());
+            Application application = new Application(prop.languageCreator(),
+                prop.domainCreator(),
+                prop.fontCreator(),
+                prop.telephoneCodeCreator(),
+                prop.decimalSeparatorCreator(),
+                prop.currencyCreator(),
+                prop.capitalTimeZoneCreator(),
+                prop.firstDayOfTheWeekCreator(),
+                prop.mainIconCreator(),
+                prop.iconCountryCreator());
 
             Console.WriteLine("Язык: {0}\n" +
                               "Домен: {1}\n" +
@@ -52,16 +53,16 @@ namespace AbstractFactoryExample
                               "Первый день недели: {7}\n" +
                               "Основная иконка: {8}\n" +
                               "Иконка флага: {9}\n",
-                application.lang,
-                application.domain,
-                application.font,
-                application.telCode,
-                application.currency,
-                application.separator,
-                application.tz,
-                application.firstDay,
-                application.mainIcon,
-                application.iconCountry);
+                application.lang.getLanguage(),
+                application.domain.getDomain(),
+                application.font.getFont(),
+                application.telCode.getCode(),
+                application.currency.getCurrency(),
+                application.separator.getSeparator(),
+                application.tz.getTimeZone(),
+                application.firstDay.getFirstDayOfTheWeek(),
+                application.mainIcon.getMainIcon(),
+                application.iconCountry.getIconCountry());
         }
     }
 
@@ -70,22 +71,23 @@ namespace AbstractFactoryExample
     /// </summary>
     class Application
     {
-        public string lang;
-        public string domain;
-        public string font;
-        public string telCode;
-        public string separator;
-        public string currency;
-        public string tz;
-        public string firstDay;
-        public string mainIcon;
-        public string iconCountry;
+        public LanguageProp lang;
+        public DomainProp domain;
+        public FontProp font;
+        public TelephoneCodeProp telCode;
+        public DecimalSeparatorProp separator;
+        public CurrencyProp currency;
+        public CapitalTimeZoneProp tz;
+        public FirstDayOfTheWeekProp firstDay;
+        public MainIconProp mainIcon;
+        public IconCountryProp iconCountry;
 
         /// <summary>
         /// Конструктор класса Application
         /// </summary>
-        public Application(string lang, string domain, string font, string telCode, string separator, string currency,
-            string tz, string firstDay, string mainIcon, string iconCountry)
+        public Application(LanguageProp lang, DomainProp domain, FontProp font, TelephoneCodeProp telCode,
+            DecimalSeparatorProp separator, CurrencyProp currency, CapitalTimeZoneProp tz,
+            FirstDayOfTheWeekProp firstDay, MainIconProp mainIcon, IconCountryProp iconCountry)
         {
             this.lang = lang;
             this.domain = domain;
